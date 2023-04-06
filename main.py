@@ -10,21 +10,23 @@ from flask import Flask, request, abort
 load_dotenv()
 
 # 使用環境變數管理敏感資料
-openai_api_key = os.environ.get("OPENAI_API_KEY")
-if openai_api_key is not None:
-    openai.api_key = openai_api_key
-    print(openai_api_key)
-else:
-    print("Error: Openai api key is not set")
+env_vars = {
+    "OPENAI_API_KEY": "",
+    "CHANNEL_ACCESS_TOKEN": "",
+    "CHANNEL_SECRET": "",
+}
 
-channel_access_token = os.environ.get("CHANNEL_ACCESS_TOKEN")
-if channel_access_token is not None:
-    line_bot_api = LineBotApi(channel_access_token)
-    print(channel_access_token)
-else:
-    print("Error: Channel access token is not set")
+for key in env_vars:
+    value = os.environ.get(key, "")
+    if value:
+        env_vars[key] = value
+        print(f"{key}: {value}")
+    else:
+        print(f"Error: {key} is not set")
 
-handler = WebhookHandler(os.environ.get('CHANNEL_SECRET'))
+openai.api_key = env_vars["OPENAI_API_KEY"]
+line_bot_api = LineBotApi(env_vars["CHANNEL_ACCESS_TOKEN"])
+handler = WebhookHandler(env_vars["CHANNEL_SECRET"])
 
 app = Flask(__name__)
 
@@ -32,7 +34,7 @@ app = Flask(__name__)
 @app.route("/callback", methods=["POST"])
 def callback():
     signature = request.headers["X-Line-Signature"]
-    body = request.get_data(as_text=True)
+    body = request.data.decode("utf-8")
     app.logger.info("Request body: " + body)
 
     try:
