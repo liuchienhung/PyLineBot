@@ -8,6 +8,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+ngrok-v3-stable-windows-amd64/
 pylinebot_env/
 build/
 develop-eggs/

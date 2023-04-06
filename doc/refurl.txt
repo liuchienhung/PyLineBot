@@ -1,0 +1,8 @@
+Reference
+1. https://steam.oxxostudio.tw/category/python/example/line-webhook.html#a1
+2. https://ithelp.ithome.com.tw/articles/10238857
+3. https://developers.line.biz/
+4. https://github.com/line/line-bot-sdk-python
+5. https://platform.openai.com/docs/api-reference
+6. https://medium.com/dean-lin/%E9%9D%A0%E5%95%8F-chatgpt-%E5%AF%AB%E7%A8%8B%E5%BC%8F-%E8%83%BD%E5%AE%8C%E6%88%90-openai-linebot-%E7%9A%84-side-project-%E5%97%8E-%E4%B8%8A-a5aa692873da
+7. 
